@@ -1,5 +1,9 @@
 -- Maja's ta config, some stuff come from orbitalquark's .textadept
 
+if not CURSES then
+	view:set_theme('zig', {font = 'GohuFont uni14 Nerd Font Propo', size = 9})
+end
+
 view.h_scroll_bar, view.v_scroll_bar = false, false
 buffer.tab_width = 2
 ui.find.highlight_all_matches = true
@@ -10,6 +14,7 @@ local function set_strip_trailing_spaces()
 	textadept.editing.strip_trailing_spaces = buffer.lexer_language ~= 'diff'
 end
 
+require('file_manager')
 
 require('spellcheck')
 require('file_diff')
@@ -42,4 +47,5 @@ table.insert(m_file, #m_file - 1, {
 	end
 })
 
-textadept.run.build_commands['build.zig'] = 'zig build'
+textadept.run.build_commands['build.zig'] = '~/.local/bin/zig build'
+textadept.run.run_commands['build.zig'] = '~/.local/bin/zig build run'
